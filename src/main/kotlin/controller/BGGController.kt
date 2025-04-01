@@ -21,6 +21,16 @@ fun Route.bgg(application: Application) {
     }
 
     get("/details") {
-        call.respondText(bggService.getGameDetails("1"))
+        val id = call.request.queryParameters["id"] ?: throw BadRequestException("Id can not be empty")
+
+        if (id.isBlank()) {
+            throw BadRequestException("Id can not be empty")
+        }
+
+        if (id.toIntOrNull() == null || id.toIntOrNull()!! < 0) {
+            throw BadRequestException("Id must be a number")
+        }
+
+        call.respond(bggService.getGameDetails(id))
     }
 }
