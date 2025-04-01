@@ -16,7 +16,7 @@ fun Route.bgg() {
             throw BadRequestException("exact can only be null or 1")
         }
 
-        call.respondText(bggService.searchGames(query, exact))
+        call.respond(bggService.searchGames(query, exact))
     }
 
     get("/details") {
