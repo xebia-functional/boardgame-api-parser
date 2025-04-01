@@ -13,6 +13,10 @@ data class BGGGameDetailItem(
     @JsonProperty("id")
     val id: String,
 
+    @JacksonXmlProperty(isAttribute = true)
+    @JsonProperty("type")
+    val type: String,
+
     @JacksonXmlProperty(localName = "thumbnail")
     @JsonProperty("thumbnail")
     val thumbnail: String? = null,
