@@ -1,5 +1,6 @@
 package com.es.model
 
+import com.es.model.search.BGGGameItem
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
