@@ -16,8 +16,7 @@ class BGGService(private val config: ApplicationConfig) {
     }
 
     private val xmlMapper = XmlMapper()
-    private val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString()
-
+    private val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString() ?: "https://boardgamegeek.com/xmlapi2/"
     suspend fun searchGames(query: String, exact: Int?): SearchResponse {
         try {
             val url = buildString {
