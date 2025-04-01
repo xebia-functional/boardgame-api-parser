@@ -10,17 +10,17 @@ A microservice that connects to the BGG API and then transforms the XML data int
 
 To build or run the project, use one of the following tasks:
 
-| Task                          | Description                                                          |
-| -------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`              | Run the tests                                                        |
-| `./gradlew build`             | Build everything                                                     |
-| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
+| Task              | Description                                                          |
+|-------------------|----------------------------------------------------------------------|
+| `./gradlew test`  | Run the tests                                                        |
+| `./gradlew build` | Build everything                                                     |
+| `./gradlew run`   | Run the Aplication                                                   |
 
 If the server starts successfully, you'll see the following output:
 
 ```
 2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
+2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8081
 ```
 
 ## Endpoints
