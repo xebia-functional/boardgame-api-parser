@@ -11,5 +11,5 @@ data class SearchResponse(
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "item")
     @JsonProperty("items")
-    val items: List<BGGGameItem> = emptyList(),
+    val items: List<BGGGameItem>? = emptyList(),
 )
