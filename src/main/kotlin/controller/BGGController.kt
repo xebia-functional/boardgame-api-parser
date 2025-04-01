@@ -27,8 +27,8 @@ fun Route.bgg(application: Application) {
             throw BadRequestException("Id can not be empty")
         }
 
-        if (id.toIntOrNull() == null || id.toIntOrNull()!! < 0) {
-            throw BadRequestException("Id must be a number")
+        if (id.toIntOrNull() == null || id.toIntOrNull()!! <= 0) {
+            throw BadRequestException("Id must be a number positive")
         }
 
         call.respond(bggService.getGameDetails(id))
