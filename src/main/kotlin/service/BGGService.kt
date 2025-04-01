@@ -7,18 +7,21 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.server.config.*
 
-class BGGService {
+class BGGService(private val config: ApplicationConfig) {
     private val client = HttpClient(CIO) {
         install(ContentNegotiation) {}
     }
 
     private val xmlMapper = XmlMapper()
+    val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString()
 
     suspend fun searchGames(query: String, exact: Int?): SearchResponse {
         try {
             val url = buildString {
-                append("https://boardgamegeek.com/xmlapi2/search?")
+                append(baseUrl)
+                append("search?")
                 append("query=$query")
                 append("&type=boardgame")
                 append("&exact=${exact ?: 0}")
