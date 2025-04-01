@@ -20,6 +20,6 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("Hello World!")
         }
-        bgg()
+        bgg(application)
     }
 }
