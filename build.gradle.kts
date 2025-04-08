@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
+    id("com.diffplug.spotless") version "7.0.3"
 }
 
 group = "com.es"
@@ -32,4 +33,11 @@ dependencies {
     implementation(libs.ktor.server.config.yaml)
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
+}
+
+spotless {
+    kotlin {
+        ktlint("3.1.1")
+        target("**/*.kt")
+    }
 }
