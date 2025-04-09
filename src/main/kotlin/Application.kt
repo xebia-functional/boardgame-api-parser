@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 fun Application.module() {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
-            call.respondText(text = "Error 500: $cause" , status = HttpStatusCode.InternalServerError)
+            call.respondText(text = "Error 500: $cause", status = HttpStatusCode.InternalServerError)
         }
 
         exception<BadRequestException> { call, cause ->
