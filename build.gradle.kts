@@ -24,6 +24,7 @@ dependencies {
     implementation(libs.ktor.serialization.jackson)
     implementation(libs.ktor.server.netty)
     implementation(libs.logback.classic)
+    implementation("io.ktor:ktor-server-status-pages:3.1.1")
     implementation(libs.ktor.server.config.yaml)
     testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
