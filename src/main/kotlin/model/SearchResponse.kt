@@ -1,18 +1,15 @@
 package com.es.model
 
 import com.es.model.search.BGGGameItem
-import kotlinx.serialization.Serializable
-import nl.adaptivity.xmlutil.serialization.*
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-@Serializable
-@XmlSerialName("items", "", "")
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class SearchResponse(
-    @XmlElement(false)
-    val total: Int? = null,
-
-    @XmlElement(false)
-    val termsofuse: String? = null,
-
-    @XmlChildrenName("items")
-    val item: List<BGGGameItem> = emptyList()
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "item")
+    @JsonProperty("items")
+    val items: List<BGGGameItem>? = emptyList(),
 )
