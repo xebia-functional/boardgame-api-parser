@@ -1,24 +1,23 @@
 package com.es.model.search
 
 import com.es.model.BGGPropertyValue
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import kotlinx.serialization.Serializable
+import nl.adaptivity.xmlutil.serialization.XmlElement
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Serializable
 data class BGGGameItem(
-    @JacksonXmlProperty(isAttribute = true)
-    @JsonProperty("id")
-    val id: String,
+    @XmlElement(true)
+    val id: String? = null,
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "name")
-    @JsonProperty("name")
+    @XmlElement(false)
+    val type: String? = null,
+
+    @XmlElement(true)
     val name: BGGGameItemName? = null,
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "yearpublished")
-    @JsonProperty("yearpublished")
-    val yearPublished: BGGPropertyValue? = null
+    @XmlElement(true)
+    val yearpublished: BGGPropertyValue? = null,
+
+    @XmlElement(false)
+    val value: String? = null
 )
