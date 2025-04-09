@@ -1,5 +1,6 @@
 package com.es.service
 
+import com.es.model.DetailResponse
 import com.es.model.SearchResponse
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import io.ktor.client.*
@@ -15,8 +16,7 @@ class BGGService(private val config: ApplicationConfig) {
     }
 
     private val xmlMapper = XmlMapper()
-    private val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString()
-
+    private val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString() ?: "https://boardgamegeek.com/xmlapi2/"
     suspend fun searchGames(query: String, exact: Int?): SearchResponse {
         try {
             val url = buildString {
@@ -37,7 +37,21 @@ class BGGService(private val config: ApplicationConfig) {
         }
     }
 
-    suspend fun getGameDetails(id: String): String {
-        return "details"
+    suspend fun getGameDetails(id: String): DetailResponse {
+        try {
+            val url = buildString {
+                append(baseUrl)
+                append("thing?")
+                append("id=${id}")
+            }
+
+            val response: HttpResponse = client.get(url)
+
+            val responseBody = response.bodyAsText()
+
+            return xmlMapper.readValue(responseBody, DetailResponse::class.java)
+        } catch (e: Exception) {
+            throw RuntimeException("Error in BoardGameGeek API: $e")
+        }
     }
 }

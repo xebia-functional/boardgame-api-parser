@@ -1,5 +1,6 @@
-package com.es.model
+package com.es.model.search
 
+import com.es.model.BGGPropertyValue
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
@@ -19,5 +20,5 @@ data class BGGGameItem(
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "yearpublished")
     @JsonProperty("yearpublished")
-    val yearPublished: BGGGameItemYearPublished? = null
+    val yearPublished: BGGPropertyValue? = null
 )
