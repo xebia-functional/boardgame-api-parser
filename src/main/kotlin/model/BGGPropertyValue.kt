@@ -1,10 +1,10 @@
 package com.es.model
 
-import kotlinx.serialization.Serializable
-import nl.adaptivity.xmlutil.serialization.XmlElement
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-@Serializable
 data class BGGPropertyValue(
-    @XmlElement(false)
+    @JacksonXmlProperty(isAttribute = true)
+    @JsonProperty("value")
     val value: String? = null
 )
