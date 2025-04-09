@@ -2,7 +2,7 @@ package com.es.service
 
 import com.es.model.DetailResponse
 import com.es.model.SearchResponse
-import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import nl.adaptivity.xmlutil.serialization.XML
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -15,8 +15,10 @@ class BGGService(private val config: ApplicationConfig) {
         install(ContentNegotiation) {}
     }
 
-    private val xmlMapper = XmlMapper()
+    private val xml = XML {}
+
     private val baseUrl = config.propertyOrNull("ktor.externalApi.bggUrl")?.getString() ?: "https://boardgamegeek.com/xmlapi2/"
+
     suspend fun searchGames(query: String, exact: Int?): SearchResponse {
         try {
             val url = buildString {
@@ -31,7 +33,7 @@ class BGGService(private val config: ApplicationConfig) {
 
             val responseBody = response.bodyAsText()
 
-            return xmlMapper.readValue(responseBody, SearchResponse::class.java)
+            return xml.decodeFromString(SearchResponse.serializer(), responseBody)
         } catch (e: Exception) {
             throw RuntimeException("Error in BoardGameGeek API: $e")
         }
@@ -42,14 +44,14 @@ class BGGService(private val config: ApplicationConfig) {
             val url = buildString {
                 append(baseUrl)
                 append("thing?")
-                append("id=${id}")
+                append("id=$id")
             }
 
             val response: HttpResponse = client.get(url)
 
             val responseBody = response.bodyAsText()
 
-            return xmlMapper.readValue(responseBody, DetailResponse::class.java)
+            return xml.decodeFromString(DetailResponse.serializer(), responseBody)
         } catch (e: Exception) {
             throw RuntimeException("Error in BoardGameGeek API: $e")
         }
