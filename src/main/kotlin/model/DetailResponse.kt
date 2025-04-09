@@ -1,11 +1,15 @@
 package com.es.model
 
 import com.es.model.detail.BGGGameDetailItem
-import nl.adaptivity.xmlutil.serialization.XmlElement
-import kotlinx.serialization.Serializable
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-@Serializable
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class DetailResponse(
-    @XmlElement(true) // Para manejar el wrapper XML
-    val items: List<BGGGameDetailItem> = emptyList()
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = "item")
+    @JsonProperty("items")
+    val items: List<BGGGameDetailItem>? = emptyList(),
 )
