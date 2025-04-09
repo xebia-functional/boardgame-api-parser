@@ -1,20 +1,16 @@
 package com.es.model.detail
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonProperty
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
+import kotlinx.serialization.Serializable
+import nl.adaptivity.xmlutil.serialization.XmlElement
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@Serializable
 data class BGGGameDetailLink(
-    @JacksonXmlProperty(isAttribute = true)
-    @JsonProperty("type")
+    @XmlElement(true)
     val type: String? = null,
 
-    @JacksonXmlProperty(isAttribute = true)
-    @JsonProperty("id")
+    @XmlElement(true)
     val id: String? = null,
 
-    @JacksonXmlProperty(isAttribute = true)
-    @JsonProperty("value")
+    @XmlElement(true)
     val value: String? = null
 )
