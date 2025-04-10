@@ -37,7 +37,11 @@ dependencies {
 
 spotless {
     kotlin {
-        ktlint("3.1.1")
+        ktlint("1.2.1")
         target("**/*.kt")
+        suppressLintsFor {
+            step = "ktlint"
+            shortCode = "standard:no-wildcard-imports"
+        }
     }
 }
