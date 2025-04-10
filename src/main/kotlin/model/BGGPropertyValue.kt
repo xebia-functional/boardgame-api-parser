@@ -6,5 +6,5 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 data class BGGPropertyValue(
     @JacksonXmlProperty(isAttribute = true)
     @JsonProperty("value")
-    val value: String? = null
+    val value: String? = null,
 )
