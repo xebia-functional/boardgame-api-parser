@@ -2,7 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
-    id("com.diffplug.spotless") version "7.0.3"
+    alias(libs.plugins.spotless)
 }
 
 group = "com.es"
