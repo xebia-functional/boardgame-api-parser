@@ -8,7 +8,9 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 import io.ktor.server.config.*
+import java.net.URLEncoder
 
 class BGGService(private val config: ApplicationConfig) {
     private val client = HttpClient(CIO) {
@@ -22,8 +24,7 @@ class BGGService(private val config: ApplicationConfig) {
             val url = buildString {
                 append(baseUrl)
                 append("search?")
-                append("query=$query")
-                append("&type=boardgame")
+                append("query=${URLEncoder.encode(query, "UTF-8")}")
                 append("&exact=${exact ?: 0}")
             }
 
