@@ -29,6 +29,7 @@ dependencies {
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.server.cors)
     implementation(libs.jackson.dataformat.xml)
     implementation(libs.ktor.server.config.yaml)
     testImplementation(libs.ktor.server.test.host)
